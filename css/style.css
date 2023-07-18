@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
+body {
+    display: flex;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #67CEC8;
+}
+
+h1 {
+    color: #222222;
+    font-size: 5rem;
+    margin: 10px 0;
+    font-family: Oswald, sans-serif;
+    text-shadow: 4px 4px 0 white;
+}
+
+div > button {
+    width: 80px;
+    border: 5px solid transparent;
+    cursor: pointer;
+    height: 80px;
+    font-size: 3rem;
+    transition: .3s all;
+    border-radius: 50%;
+    background-color: white;
+}
+
+div > button:not(:last-of-type) {
+    margin-right: 15px;
+}
+
+div > button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 2px 15px 5px rgba(0, 0, 0, .1);
+    background-color: #222222;
+}
+
+div > button:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 5px 5px rgba(0, 0, 0, .1);
+}
