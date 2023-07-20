@@ -52,7 +52,20 @@ const getRecipes = (mood) => {
         .then(response => response.json())
         .then(data => {
             const resultDiv = document.getElementById('recipes')
-            resultDiv.innerHTML = data.hits[randomIndex].recipe.label + '<br><br> '
-            resultDiv.innerHTML += data.hits[randomIndex].recipe.ingredientLines
+            resultDiv.innerHTML = `<h2>${data.hits[randomIndex].recipe.label}</h2>`
+            resultDiv.innerHTML += `<img src=${data.hits[randomIndex].recipe.image}>`
+            resultDiv.innerHTML += `<form action="${data.hits[randomIndex].recipe.url}"><input class="btn" type="submit" value="see full recipe" formtarget=_blank /></form>`            
+
+            resultDiv.innerHTML += '<h3>INGREDIENTS :</h3>'
+
+            for (let line of data.hits[randomIndex].recipe.ingredientLines) {
+                resultDiv.innerHTML += line + '<br>'
+            }
+
+            resultDiv.innerHTML += '<br>'
+
+            for (let healthLabel of data.hits[randomIndex].recipe.healthLabels) {
+                resultDiv.innerHTML += healthLabel + '<br>'
+            }
         })
 }

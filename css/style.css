@@ -18,7 +18,7 @@ h1 {
     text-shadow: 4px 4px 0 white;
 }
 
-div > button {
+.emojiButton > button {
     width: 80px;
     border: 5px solid transparent;
     cursor: pointer;
@@ -29,18 +29,31 @@ div > button {
     background-color: white;
 }
 
-div > button:not(:last-of-type) {
+.emojiButton > button:not(:last-of-type) {
     margin-right: 15px;
 }
 
-div > button:hover {
+.emojiButton > button:hover {
     transform: translateY(-5px);
     box-shadow: 0 2px 15px 5px rgba(0, 0, 0, .1);
     background-color: #222222;
 }
 
-div > button:active {
+.emojiButton > button:active {
     transform: translateY(0px);
     box-shadow: 0 2px 5px 5px rgba(0, 0, 0, .1);
-    background-color: #222222 !important;
+    background-color: #222222;
+}
+
+.btn {
+    border: 5px solid transparent;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 8px;
+    width: 3OOpx;
+}
+
+input[type=submit].btn:hover {
+    box-shadow: 0 2px 15px 5px rgba(0, 0, 0, .1);
+    background-color: #1f6965;
 }
