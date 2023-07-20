@@ -8,6 +8,7 @@ const angry = document.querySelector('#angry');
 const tired = document.querySelector('#tired');
 const sick = document.querySelector('#sick');
 const anxious = document.querySelector('#anxious');
+const lazy = document.querySelector('#lazy');
 
 
 // Ajoute tes évènements ici :
@@ -38,5 +39,9 @@ sick.addEventListener('click', () => {
 
 anxious.addEventListener('click', () => {
     recipe.innerHTML = 'anxious!';
+});
+
+lazy.addEventListener('click', () => {
+    recipe.innerHTML = 'lazy!';
 });
 
