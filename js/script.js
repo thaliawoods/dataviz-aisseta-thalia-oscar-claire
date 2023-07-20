@@ -1,5 +1,5 @@
 
-const recipe = document.querySelector('#recipe');
+const recipe = document.querySelector('#recipes');
 
 const excited = document.querySelector('#excited');
 const sad = document.querySelector('#sad');
@@ -11,37 +11,51 @@ const anxious = document.querySelector('#anxious');
 const lazy = document.querySelector('#lazy');
 
 
-// Ajoute tes évènements ici :
-
 excited.addEventListener('click', () => {
-    recipe.innerHTML = 'excited!';
+    getRecipes('excited');
 });
 
 sad.addEventListener('click', () => {
-    recipe.innerHTML = 'sad!';
+    getRecipes('sad');
 });
 
 happy.addEventListener('click', () => {
-    recipe.innerHTML = 'happy!';
+    getRecipes('happy');
 });
 
 angry.addEventListener('click', () => {
-    recipe.innerHTML = 'angry!';
+    getRecipes('angry');
 });
 
 tired.addEventListener('click', () => {
-    recipe.innerHTML = 'tired!';
+    getRecipes('tired');
 });
 
 sick.addEventListener('click', () => {
-    recipe.innerHTML = 'sick!';
+    getRecipes('sick');
 });
 
 anxious.addEventListener('click', () => {
-    recipe.innerHTML = 'anxious!';
+    getRecipes('anxious');
 });
 
 lazy.addEventListener('click', () => {
-    recipe.innerHTML = 'lazy!';
+    getRecipes('lazy');
 });
 
+
+
+const getRecipes = (mood) => {
+    const APP_ID = '4818c404';
+    const APP_KEY = 'cdd694c0334ffdb4ee8e906086c61656';
+    const ingredient = mood
+
+    const response = fetch(`https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&count=1`)
+        .then(response => response.json())
+        .then(data => {
+            const resultDiv = document.getElementById('recipes')
+            resultDiv.innerHTML = data.hits[0].recipe.label
+            resultDiv.innerHTML += data.hits[0].recipe.ingredientLines
+
+        })
+}
