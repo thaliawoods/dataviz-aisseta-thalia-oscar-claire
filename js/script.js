@@ -1,6 +1,4 @@
 
-const recipe = document.querySelector('#recipes');
-
 const excited = document.querySelector('#excited');
 const sad = document.querySelector('#sad');
 const happy = document.querySelector('#happy');
@@ -44,18 +42,17 @@ lazy.addEventListener('click', () => {
 });
 
 
-
 const getRecipes = (mood) => {
     const APP_ID = '4818c404';
     const APP_KEY = 'cdd694c0334ffdb4ee8e906086c61656';
     const ingredient = mood
+    const randomIndex = Math.floor(Math.random()*11)
 
     const response = fetch(`https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&count=1`)
         .then(response => response.json())
         .then(data => {
             const resultDiv = document.getElementById('recipes')
-            resultDiv.innerHTML = data.hits[0].recipe.label
-            resultDiv.innerHTML += data.hits[0].recipe.ingredientLines
-
+            resultDiv.innerHTML = data.hits[randomIndex].recipe.label + '<br><br> '
+            resultDiv.innerHTML += data.hits[randomIndex].recipe.ingredientLines
         })
 }
