@@ -63,9 +63,5 @@ const getRecipes = (mood) => {
             }
 
             resultDiv.innerHTML += '<br>'
-
-            for (let healthLabel of data.hits[randomIndex].recipe.healthLabels) {
-                resultDiv.innerHTML += healthLabel + '<br>'
-            }
         })
 }
