@@ -1,46 +1,11 @@
 
-const excited = document.querySelector('#excited');
-const sad = document.querySelector('#sad');
-const happy = document.querySelector('#happy');
-const angry = document.querySelector('#angry');
-const tired = document.querySelector('#tired');
-const sick = document.querySelector('#sick');
-const anxious = document.querySelector('#anxious');
-const lazy = document.querySelector('#lazy');
+const moods = ['excited', 'sad', 'happy', 'angry', 'tired', 'sick', 'anxious', 'lazy']
 
-
-excited.addEventListener('click', () => {
-    getRecipes('excited');
-});
-
-sad.addEventListener('click', () => {
-    getRecipes('sad');
-});
-
-happy.addEventListener('click', () => {
-    getRecipes('happy');
-});
-
-angry.addEventListener('click', () => {
-    getRecipes('angry');
-});
-
-tired.addEventListener('click', () => {
-    getRecipes('tired');
-});
-
-sick.addEventListener('click', () => {
-    getRecipes('sick');
-});
-
-anxious.addEventListener('click', () => {
-    getRecipes('anxious');
-});
-
-lazy.addEventListener('click', () => {
-    getRecipes('lazy');
-});
-
+for (let i = 0; i < moods.length ; i++) {
+    document.querySelectorAll(".emojiButton > button")[i].addEventListener('click', function(){
+        getRecipes(i);
+    })
+}
 
 const getRecipes = (mood) => {
     const APP_ID = '4818c404';
@@ -52,7 +17,8 @@ const getRecipes = (mood) => {
         .then(response => response.json())
         .then(data => {
             const resultDiv = document.getElementById('recipes')
-            resultDiv.innerHTML = `<h2>${data.hits[randomIndex].recipe.label}</h2>`
+            const label = data.hits[randomIndex].recipe.label
+            resultDiv.innerHTML = `<h2>${label}</h2>`
             resultDiv.innerHTML += `<img src=${data.hits[randomIndex].recipe.image}>`
             resultDiv.innerHTML += `<form action="${data.hits[randomIndex].recipe.url}"><input class="btn" type="submit" value="see full recipe" formtarget=_blank /></form>`            
 
