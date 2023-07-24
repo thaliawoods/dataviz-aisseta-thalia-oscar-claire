@@ -75,9 +75,10 @@ const sendLabelToOpenAI = (label) => {
         songSuggestionDiv.innerHTML = suggestedSong ;
 
     getYoutubeVideoLink(suggestedSong)
-      .then((youtubeLink) => {
-        if (youtubeLink) {
-          console.log("Lien YouTube de la musique :", youtubeLink);
+      .then((data) => {
+        if (data) {
+          console.log("Lien YouTube de la musique :", data.youtubeLink);
+          console.log("URL de la miniature :", data.thumbnailURL);
         } else {
           console.log("Aucune vidéo YouTube trouvée pour cette musique.");
         }
@@ -96,7 +97,11 @@ const getYoutubeVideoLink = (SongName) => {
         .then((response) => response.json())
         .then((data) => {
             if(data.items.length > 0){
-                return `https://www.youtube.com/watch?v=${data.items[0].id.videoId}`;
+                const youtubeLink=`https://www.youtube.com/watch?v=${data.items[0].id.videoId}`;
+                const thumbnails = data.items[0].snippet.thumbnails;
+                const thumbnailURL = thumbnails.medium.url;
+
+                return { youtubeLink, thumbnailURL};
             } else {
                 return null;
             }
@@ -106,4 +111,3 @@ const getYoutubeVideoLink = (SongName) => {
             return null;
         });
 };
-
