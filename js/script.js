@@ -3,7 +3,7 @@ const moods = ['excited', 'sad', 'happy', 'angry', 'tired', 'sick', 'anxious', '
 
 for (let i = 0; i < moods.length ; i++) {
     document.querySelectorAll(".emojiButton > button")[i].addEventListener('click', function(){
-        getRecipes(i);
+        getRecipes(moods[i]);
     })
 }
 
@@ -13,9 +13,11 @@ const getRecipes = (mood) => {
     const ingredient = mood
     const randomIndex = Math.floor(Math.random()*11)
 
-    fetch(`https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&count=1&excluded=alcohol`)
+    fetch(`https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&dishType=main course`)
         .then(response => response.json())
         .then(data => {
+            console.log(data.hits[randomIndex].recipe)
+
             const resultDiv = document.getElementById('recipes')
             const label = data.hits[randomIndex].recipe.label
             resultDiv.innerHTML = `<h2>${label}</h2>`
@@ -29,7 +31,6 @@ const getRecipes = (mood) => {
             }
 
             resultDiv.innerHTML += '<br>'
-            console.log(data.hits[randomIndex].recipe)
        
         sendLabelToOpenAI(label);
     });
