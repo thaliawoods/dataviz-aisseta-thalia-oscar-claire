@@ -79,6 +79,10 @@ const sendLabelToOpenAI = (label) => {
         if (data) {
           console.log("Lien YouTube de la musique :", data.youtubeLink);
           console.log("URL de la miniature :", data.thumbnailURL);
+
+          const videoThumb = document.getElementById("video-thumb")
+          videoThumb.innerHTML = `<img src="${data.thumbnailURL}">`
+
         } else {
           console.log("Aucune vidéo YouTube trouvée pour cette musique.");
         }
@@ -101,7 +105,7 @@ const getYoutubeVideoLink = (SongName) => {
                 const thumbnails = data.items[0].snippet.thumbnails;
                 const thumbnailURL = thumbnails.medium.url;
 
-                return { youtubeLink, thumbnailURL};
+                return { youtubeLink, thumbnailURL, thumbnails};
             } else {
                 return null;
             }
