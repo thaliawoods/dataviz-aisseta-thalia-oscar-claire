@@ -20,7 +20,7 @@ const getRecipes = (mood) => {
 
             const resultDiv = document.getElementById('recipes')
             const label = data.hits[randomIndex].recipe.label
-            resultDiv.innerHTML = `<h2>${label}</h2>`
+            resultDiv.innerHTML = `<span><img src="./images/recipe.png" class="icon"> <h2>${label}</h2></span>`
             resultDiv.innerHTML += `<img src=${data.hits[randomIndex].recipe.image}>`
             resultDiv.innerHTML += `<form action="${data.hits[randomIndex].recipe.url}"><input class="btn" type="submit" value="see full recipe" formtarget=_blank /></form>`            
 
@@ -81,7 +81,8 @@ const sendLabelToOpenAI = (label) => {
           console.log("URL de la miniature :", data.thumbnailURL);
 
           const videoThumb = document.getElementById("video-thumb")
-          videoThumb.innerHTML = `<img src="${data.thumbnailURL}">`
+          videoThumb.innerHTML = `<img src="${data.thumbnailURL}"> <br>`
+          videoThumb.innerHTML += `<a href=${data.youtubeLink}>link</a>`
 
         } else {
           console.log("Aucune vidéo YouTube trouvée pour cette musique.");

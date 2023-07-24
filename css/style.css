@@ -58,6 +58,18 @@ input[type=submit].btn:hover {
     background-color: #1f6965;
 }
 
-.healthimg {
-    width: 10%;
+.container {
+    display: flex;
+}
+
+.recipeBlock {
+    width: 30%;
+}
+
+.songBlock {
+    width: 30%;
+}
+
+.icon {
+    width:10%;
 }
