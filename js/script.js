@@ -70,12 +70,40 @@ const sendLabelToOpenAI = (label) => {
     })
     .then(response => response.json())
     .then(data => {
-        const suggestedSong = data.choices[0].text;
+        let suggestedSong = data.choices[0].text;
         const songSuggestionDiv = document.getElementById('song-suggestion');
         songSuggestionDiv.innerHTML = suggestedSong ;
-    })
+
+    getYoutubeVideoLink(suggestedSong)
+      .then((youtubeLink) => {
+        if (youtubeLink) {
+          console.log("Lien YouTube de la musique :", youtubeLink);
+        } else {
+          console.log("Aucune vidéo YouTube trouvée pour cette musique.");
+        }
+    });
+})
     .catch(error => {
         console.error('Erreur lors de la requête à l\'API OpenAI :', error.message);
     });
 };
-const playTheSong = suggestedSong
+
+const getYoutubeVideoLink = (SongName) => {
+    const YOUTUBE_API_KEY = 'AIzaSyBYsSYd0U8g95Od9-KIVfG9KkKLAub-NPY'
+    const youtubeEndPoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(SongName)}&key=${YOUTUBE_API_KEY}&type=video`;
+
+    return fetch(youtubeEndPoint)
+        .then((response) => response.json())
+        .then((data) => {
+            if(data.items.length > 0){
+                return `https://www.youtube.com/watch?v=${data.items[0].id.videoId}`;
+            } else {
+                return null;
+            }
+        })
+        .catch((error) => {
+            console.error('Erreur lors de la requête à l\'API YouTube :', error.message);
+            return null;
+        });
+};
+
