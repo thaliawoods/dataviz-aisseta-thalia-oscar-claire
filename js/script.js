@@ -13,7 +13,7 @@ const getRecipes = (mood) => {
     const ingredient = mood
     const randomIndex = Math.floor(Math.random()*11)
 
-    const response = fetch(`https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&count=1`)
+    fetch(`https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&count=1&excluded=alcohol`)
         .then(response => response.json())
         .then(data => {
             const resultDiv = document.getElementById('recipes')
@@ -29,83 +29,52 @@ const getRecipes = (mood) => {
             }
 
             resultDiv.innerHTML += '<br>'
+            console.log(data.hits[randomIndex].recipe)
        
         sendLabelToOpenAI(label);
     });
 }
 
-
-let suggestedSong = ""; 
+let suggestedSong = "";
 const sendLabelToOpenAI = (label) => {
-const openaiApiKey = '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'; 
-const openaiEndpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
-
-const headers = {
-    'Authorization': `Bearer ${openaiApiKey}`,
-    'Content-Type': 'application/json'
+    const openaiApiKey = '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';
+    const openaiEndpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
+    const headers = {
+        'Authorization': `Bearer ${openaiApiKey}`,
+        'Content-Type': 'application/json'
+    };
+    const prompt = `Suggest a drink to go with the recipe mood in just two words"${label}"`;
+    fetch(openaiEndpoint, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+            prompt: prompt
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        const openaiResult = data.choices[0].text;
+        const cocktailSuggestionDiv = document.getElementById('cocktail-suggestion');
+        cocktailSuggestionDiv.innerHTML = openaiResult;
+        console.log(openaiResult);
+    })
+    const songPrompt = `suggest me a  modern song who matches with the recipe mood"${label}"`;
+    fetch(openaiEndpoint, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+            prompt: songPrompt
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const suggestedSong = data.choices[0].text;
+        const songSuggestionDiv = document.getElementById('song-suggestion');
+        songSuggestionDiv.innerHTML = suggestedSong ;
+    })
+    .catch(error => {
+        console.error('Erreur lors de la requête à l\'API OpenAI :', error.message);
+    });
 };
-const prompt = `Suggest a drink to go with the recipe mood in just two words"${label}"`;
-
-
-fetch(openaiEndpoint, {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify({
-        prompt: prompt
-    })
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data)
-    const openaiResult = data.choices[0].text;
-    const cocktailSuggestionDiv = document.getElementById('cocktail-suggestion');
-    cocktailSuggestionDiv.innerHTML = openaiResult;
-    console.log(openaiResult); 
-})
-const songPrompt = `suggest me a  modern song who matches with the recipe mood"${label}"`;
-fetch(openaiEndpoint, {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify({
-        prompt: songPrompt
-    })
-})
-.then(response => response.json())
-.then(data => {
-    const suggestedSong = data.choices[0].text;
-    const songSuggestionDiv = document.getElementById('song-suggestion');
-    songSuggestionDiv.innerHTML = suggestedSong ;
-})
-.catch(error => {
-    console.error('Erreur lors de la requête à l\'API OpenAI :', error.message);
-});
-}; 
-const playTheSong = suggestedSong 
-
-const axios = require('axios');
-
-const YOUTUBE_API_KEY = 'AIzaSyBYsSYd0U8g95Od9-KIVfG9KkKLAub-NPY';
-
-axios.get('https://www.googleapis.com/youtube/v3/search', {
-  params: {
-    key: YOUTUBE_API_KEY,
-    q: suggestedSong,
-    part: 'snippet',
-    type: 'video',
-    maxResults: 1,
-  },
-})
-  .then(response => {
-    if (response.data.items.length > 0) {
-      const videoId = response.data.items[0].id.videoId;
-      const videoLink = `https://www.youtube.com/watch?v=${videoId}`;
-      // Renvoyer le lien de la vidéo à votre page web
-      console.log(videoLink);
-    } else {
-      console.log('Aucune vidéo trouvée pour ce titre de musique.');
-    }
-  })
-  .catch(error => {
-    console.error('Une erreur s\'est produite lors de la recherche sur YouTube:', error);
-  });
-
+const playTheSong = suggestedSong
