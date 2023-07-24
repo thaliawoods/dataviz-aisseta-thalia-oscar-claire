@@ -115,3 +115,31 @@ fetch(openaiEndpoint, {
 });
 }; 
 const playTheSong = suggestedSong 
+
+const axios = require('axios');
+
+const YOUTUBE_API_KEY = 'AIzaSyBYsSYd0U8g95Od9-KIVfG9KkKLAub-NPY';
+
+axios.get('https://www.googleapis.com/youtube/v3/search', {
+  params: {
+    key: YOUTUBE_API_KEY,
+    q: suggestedSong,
+    part: 'snippet',
+    type: 'video',
+    maxResults: 1,
+  },
+})
+  .then(response => {
+    if (response.data.items.length > 0) {
+      const videoId = response.data.items[0].id.videoId;
+      const videoLink = `https://www.youtube.com/watch?v=${videoId}`;
+      // Renvoyer le lien de la vidéo à votre page web
+      console.log(videoLink);
+    } else {
+      console.log('Aucune vidéo trouvée pour ce titre de musique.');
+    }
+  })
+  .catch(error => {
+    console.error('Une erreur s\'est produite lors de la recherche sur YouTube:', error);
+  });
+
