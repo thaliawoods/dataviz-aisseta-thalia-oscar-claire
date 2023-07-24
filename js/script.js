@@ -63,5 +63,55 @@ const getRecipes = (mood) => {
             }
 
             resultDiv.innerHTML += '<br>'
-        })
+       
+        sendLabelToOpenAI(label);
+    });
 }
+
+
+let suggestedSong = ""; 
+const sendLabelToOpenAI = (label) => {
+const openaiApiKey = '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'; 
+const openaiEndpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
+
+const headers = {
+    'Authorization': `Bearer ${openaiApiKey}`,
+    'Content-Type': 'application/json'
+};
+const prompt = `Suggest a drink to go with the recipe mood in just two words"${label}"`;
+
+
+fetch(openaiEndpoint, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+        prompt: prompt
+    })
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data)
+    const openaiResult = data.choices[0].text;
+    const cocktailSuggestionDiv = document.getElementById('cocktail-suggestion');
+    cocktailSuggestionDiv.innerHTML = openaiResult;
+    console.log(openaiResult); 
+})
+const songPrompt = `suggest me a  modern song who matches with the recipe mood"${label}"`;
+fetch(openaiEndpoint, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+        prompt: songPrompt
+    })
+})
+.then(response => response.json())
+.then(data => {
+    const suggestedSong = data.choices[0].text;
+    const songSuggestionDiv = document.getElementById('song-suggestion');
+    songSuggestionDiv.innerHTML = suggestedSong ;
+})
+.catch(error => {
+    console.error('Erreur lors de la requête à l\'API OpenAI :', error.message);
+});
+}; 
+const playTheSong = suggestedSong 
