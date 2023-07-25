@@ -20,15 +20,17 @@ const getRecipes = (mood) => {
 
             const resultDiv = document.getElementById('recipes')
             const label = data.hits[randomIndex].recipe.label
-            resultDiv.innerHTML = `<span><img src="./images/recipe.png" class="icon"> <h2>${label}</h2></span>`
-            resultDiv.innerHTML += `<img src=${data.hits[randomIndex].recipe.image}>`
-            resultDiv.innerHTML += `<form action="${data.hits[randomIndex].recipe.url}"><input class="btn" type="submit" value="see full recipe" formtarget=_blank /></form>`            
+            resultDiv.innerHTML = `<br><span class="title"><img src="./images/recipe.png" class="icon"> <span id="recipeTitle">${label}</span></span><br>`
+            resultDiv.innerHTML += `<br><img src=${data.hits[randomIndex].recipe.image}>`
 
             resultDiv.innerHTML += '<h3>INGREDIENTS :</h3>'
 
             for (let line of data.hits[randomIndex].recipe.ingredientLines) {
                 resultDiv.innerHTML += line + '<br>'
             }
+
+            resultDiv.innerHTML += `<br><form action="${data.hits[randomIndex].recipe.url}"><input class="btn" type="submit" value="see full recipe" formtarget=_blank /></form>`            
+
 
             resultDiv.innerHTML += '<br>'
        
@@ -57,10 +59,10 @@ const sendLabelToOpenAI = (label) => {
         console.log(data)
         const openaiResult = data.choices[0].text;
         const cocktailSuggestionDiv = document.getElementById('cocktail-suggestion');
-        cocktailSuggestionDiv.innerHTML = openaiResult;
+        cocktailSuggestionDiv.innerHTML = `<br><span class="title"><img src="./images/drink.png" class="icon"> <span id="recipeTitle">${openaiResult}</span></span><br>`;
         console.log(openaiResult);
     })
-    const songPrompt = `suggest me a  modern song who matches with the recipe mood"${label}"`;
+    const songPrompt = `suggest me a modern song who matches with the recipe mood "${label}" and format it like this : "Song" - Artist`;
     fetch(openaiEndpoint, {
         method: 'POST',
         headers: headers,
@@ -72,7 +74,7 @@ const sendLabelToOpenAI = (label) => {
     .then(data => {
         let suggestedSong = data.choices[0].text;
         const songSuggestionDiv = document.getElementById('song-suggestion');
-        songSuggestionDiv.innerHTML = suggestedSong ;
+        songSuggestionDiv.innerHTML = `<br><span class="title"><img src="./images/music.png" class="icon"> <span id="recipeTitle">${suggestedSong}</span></span><br>` ;
 
     getYoutubeVideoLink(suggestedSong)
       .then((data) => {
@@ -95,7 +97,7 @@ const sendLabelToOpenAI = (label) => {
 };
 
 const getYoutubeVideoLink = (SongName) => {
-    const YOUTUBE_API_KEY = 'AIzaSyBYsSYd0U8g95Od9-KIVfG9KkKLAub-NPY'
+    const YOUTUBE_API_KEY = 'AIzaSyCNJCkwqELWejsZJzTm6cm3L_iPJlgxRIk'
     const youtubeEndPoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(SongName)}&key=${YOUTUBE_API_KEY}&type=video`;
 
     return fetch(youtubeEndPoint)

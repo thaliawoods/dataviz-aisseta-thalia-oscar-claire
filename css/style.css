@@ -8,6 +8,8 @@ body {
     flex-direction: column;
     justify-content: center;
     background-color: #bff1d5;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+
 }
 
 h1 {
@@ -46,30 +48,66 @@ h1 {
 }
 
 .btn {
-    border: 5px solid transparent;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
     cursor: pointer;
-    background-color: white;
-    border-radius: 8px;
-    width: 3OOpx;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+}
+
+input[type=submit].btn:hover,
+input[type=submit].btn:focus {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
 }
 
 input[type=submit].btn:hover {
-    box-shadow: 0 2px 15px 5px rgba(0, 0, 0, .1);
-    background-color: #1f6965;
+    transform: translateY(-1px);
 }
 
-.container {
-    display: flex;
+input[type=submit].btn:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
 }
 
-.recipeBlock {
-    width: 30%;
-}
-
-.songBlock {
-    width: 30%;
+#recipeBlock {
+    margin-right: 10px;
 }
 
 .icon {
-    width:10%;
+    width:5%;
+}
+
+#recipeTitle {
+    font-size: 1.8em;
+}
+
+.title {
+    padding-top: 30px;
+}
+
+h3 {
+    letter-spacing: 7px;
 }
