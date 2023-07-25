@@ -102,7 +102,7 @@ const sendLabelToOpenAI = (label) => {
 };
 
 const getYoutubeVideoLink = (SongName) => {
-    const YOUTUBE_API_KEY = 'AIzaSyCNJCkwqELWejsZJzTm6cm3L_iPJlgxRIk'
+    const YOUTUBE_API_KEY = 'AIzaSyDe0xHrH_rxHAtG5TbGRj0s76TFN3ZTGNE'
     const youtubeEndPoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(SongName)}&key=${YOUTUBE_API_KEY}&type=video`;
 
     return fetch(youtubeEndPoint)
