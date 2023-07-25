@@ -60,7 +60,7 @@ const sendLabelToOpenAI = (label) => {
         cocktailSuggestionDiv.innerHTML = openaiResult;
         console.log(openaiResult);
     })
-    const songPrompt = `suggest me a  modern song who matches with the recipe mood"${label}"`;
+    const songPrompt = `suggest me a modern song both in french and english who matches with the recipe mood following this syntax : auteur - titre"${label} "`;
     fetch(openaiEndpoint, {
         method: 'POST',
         headers: headers,
@@ -95,7 +95,7 @@ const sendLabelToOpenAI = (label) => {
 };
 
 const getYoutubeVideoLink = (SongName) => {
-    const YOUTUBE_API_KEY = 'AIzaSyBYsSYd0U8g95Od9-KIVfG9KkKLAub-NPY'
+    const YOUTUBE_API_KEY = 'AIzaSyCNJCkwqELWejsZJzTm6cm3L_iPJlgxRIk'
     const youtubeEndPoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(SongName)}&key=${YOUTUBE_API_KEY}&type=video`;
 
     return fetch(youtubeEndPoint)

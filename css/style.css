@@ -62,14 +62,6 @@ input[type=submit].btn:hover {
     display: flex;
 }
 
-.recipeBlock {
-    width: 30%;
-}
-
-.songBlock {
-    width: 30%;
-}
-
 .icon {
     width:10%;
 }
