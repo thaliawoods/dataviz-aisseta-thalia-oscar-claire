@@ -46,7 +46,7 @@ const sendLabelToOpenAI = (label) => {
         'Authorization': `Bearer ${openaiApiKey}`,
         'Content-Type': 'application/json'
     };
-    const prompt = `Suggest a drink to go with the recipe mood in just two words"${label}"`;
+    const prompt = `Suggest a drink to go with the recipe mood in one or two words"${label}"`;
     fetch(openaiEndpoint, {
         method: 'POST',
         headers: headers,
@@ -62,7 +62,7 @@ const sendLabelToOpenAI = (label) => {
         cocktailSuggestionDiv.innerHTML = `<br><span class="title"><img src="./images/drink.png" class="icon"> <span id="recipeTitle">${openaiResult}</span></span><br>`;
         console.log(openaiResult);
     })
-    const songPrompt = `suggest me a modern song both in french or english who matches with the recipe mood following this syntax : Artist - Song"${label} "`;
+    const songPrompt = `suggest me a song from the Billboard 100 who matches with the recipe mood following this syntax : Artist - Song"${label} "`;
     fetch(openaiEndpoint, {
         method: 'POST',
         headers: headers,
@@ -84,7 +84,7 @@ const sendLabelToOpenAI = (label) => {
 
           const videoThumb = document.getElementById("video-thumb")
           //videoThumb.innerHTML = `<img src="${data.thumbnailURL}"> <br>`
-          videoThumb.innerHTML += `<button class="button">
+          videoThumb.innerHTML = `<button class="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" viewBox="0 0 24 24" height="24" 
           fill="none" class="svg-icon">
               <path fill="#ffffff" d="M22 7.27c-.242-.874-.961-1.573-1.83-1.827C19.383 5 12 5 12 5s-7.383 0-8.17.443C2.96 5.697 2.241 6.396 2 7.27 1.46 9.211 1.44 11.39 1.434 12 1.44 12.61 1.46 14.789 2 16.73c.242.874.961 1.573 1.83 1.827C4.617 19 12 19 12 19s7.383 0 8.17-.443c.869-.254 1.588-.953 1.83-1.827C22.54 14.789 22.56 12.61 22.566 12 22.56 11.39 22.54 9.211 22 7.27zM10 15V9l6 3-6 3z"></path></g></svg>

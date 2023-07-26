@@ -98,7 +98,7 @@ input[type=submit].btn:active {
 }
 
 .icon {
-    width:5%;
+    width:25px;
 }
 
 #recipeTitle {
@@ -187,4 +187,8 @@ h3 {
   .link{
     text-decoration: none;
     color: white;
+  }
+
+  #video-thumb {
+    padding-top: 10px;
   }
