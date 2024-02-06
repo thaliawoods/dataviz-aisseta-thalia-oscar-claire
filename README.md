@@ -12,7 +12,7 @@ Aisseta - Claire - Oscar - Thalia
 
 <img width="1038" alt="Screenshot 2024-02-06 at 22 42 47" src="https://github.com/thaliawoods/dataviz-aisseta-thalia-oscar-claire/assets/135039431/dce7d6e7-63dc-4cf7-b63d-dc14cfe86579">
 
-<img width="1039" alt="Screenshot 2024-02-06 at 22 43 00" src="https://github.com/thaliawoods/dataviz-aisseta-thalia-oscar-claire/assets/135039431/36f73b32-229d-4194-acf9-cac8851d74a8">
+<img width="1029" alt="Screenshot 2024-02-06 at 22 43 55" src="https://github.com/thaliawoods/dataviz-aisseta-thalia-oscar-claire/assets/135039431/48e50ecf-4262-4d48-ab7d-2af105e57461">
 
 
 ## Tech Stack
