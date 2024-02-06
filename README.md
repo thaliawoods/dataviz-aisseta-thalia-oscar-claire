@@ -2,13 +2,17 @@
 
 Ce projet a pour objectif de développer une application web qui permette de visualiser des données de façon dynamique. Ce principe peut être pris de manière très large : ainsi, il peut s’agir de construire une page web affichant un graphique « classique » reflétant l’évolution de telle ou telle donnée. Mais il peut aussi s’agir de créer une animation mettant en scène des données de façon plus originale ou ludique (voir plus bas dans les idées proposées).
 
+
 ## Groupe de 3 personnes - 6 jours
 
 Aisseta - Claire - Oscar - Thalia 
 
+
 ## Aperçu du projet
 
-( mettre screen )
+<img width="1038" alt="Screenshot 2024-02-06 at 22 42 47" src="https://github.com/thaliawoods/dataviz-aisseta-thalia-oscar-claire/assets/135039431/dce7d6e7-63dc-4cf7-b63d-dc14cfe86579">
+
+<img width="1039" alt="Screenshot 2024-02-06 at 22 43 00" src="https://github.com/thaliawoods/dataviz-aisseta-thalia-oscar-claire/assets/135039431/36f73b32-229d-4194-acf9-cac8851d74a8">
 
 
 ## Tech Stack
