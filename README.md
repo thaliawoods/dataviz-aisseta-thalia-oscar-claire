@@ -32,6 +32,4 @@ Aisseta - Claire - Oscar - Thalia
 - Se distribuer les domaines
 - Se concerter sur les points de rencontres de nos domaines respectifs
 
-      
-## Lancement du projet
 
